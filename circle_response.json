@@ -1,0 +1,282 @@
+ {
+  "payload": {
+    "compare": "https://github.com/soumikdatta09/TestProject/compare/010c6c634075...e0b0ccfd9505",
+    "previous_successful_build": null,
+    "build_parameters": null,
+    "oss": true,
+    "all_commit_details_truncated": false,
+    "committer_date": "2017-01-18T16:30:17+05:30",
+    "steps": [
+      {
+        "name": "Starting the build",
+        "actions": [
+          {
+            "truncated": false,
+            "index": 0,
+            "parallel": false,
+            "failed": null,
+            "infrastructure_fail": null,
+            "name": "Starting the build",
+            "bash_command": null,
+            "status": "success",
+            "timedout": null,
+            "continue": null,
+            "end_time": "2017-01-18T11:00:28.137Z",
+            "type": "infrastructure",
+            "output_url": "https://circle-production-action-output.s3.amazonaws.com/9e5ecd2f9296b9a83ca4f785-soumikdatta09-TestProject-0-0?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20170118T110058Z&X-Amz-SignedHeaders=host&X-Amz-Expires=431999&X-Amz-Credential=AKIAIQ65EYQDTMSJK2DQ%2F20170118%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=50f34c396e099b1821d0ad31ed51c78b8104d7e2039f3a2064f92db324b99aaa",
+            "start_time": "2017-01-18T11:00:19.053Z",
+            "exit_code": null,
+            "canceled": null,
+            "step": 0,
+            "run_time_millis": 9084,
+            "has_output": true
+          }
+        ]
+      },
+      {
+        "name": "Start container",
+        "actions": [
+          {
+            "truncated": false,
+            "index": 0,
+            "parallel": true,
+            "failed": null,
+            "infrastructure_fail": null,
+            "name": "Start container",
+            "bash_command": null,
+            "status": "success",
+            "timedout": null,
+            "continue": null,
+            "end_time": "2017-01-18T11:00:41.057Z",
+            "source": "config",
+            "type": "infrastructure",
+            "output_url": "https://circle-production-action-output.s3.amazonaws.com/be5ecd2f9296b9a8cca4f785-soumikdatta09-TestProject-1-0?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20170118T110058Z&X-Amz-SignedHeaders=host&X-Amz-Expires=431999&X-Amz-Credential=AKIAIQ65EYQDTMSJK2DQ%2F20170118%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=80fc79a16850697135a83cdba86b4e8b6688f1222c3fd248efd3a51938636bd9",
+            "start_time": "2017-01-18T11:00:28.159Z",
+            "exit_code": 0,
+            "canceled": null,
+            "step": 1,
+            "run_time_millis": 12898,
+            "has_output": true
+          }
+        ]
+      },
+      {
+        "name": "Enable SSH",
+        "actions": [
+          {
+            "truncated": false,
+            "index": 0,
+            "parallel": true,
+            "failed": null,
+            "infrastructure_fail": null,
+            "name": "Enable SSH",
+            "bash_command": null,
+            "status": "success",
+            "timedout": null,
+            "continue": null,
+            "end_time": "2017-01-18T11:00:45.12Z",
+            "type": "infrastructure",
+            "output_url": "https://circle-production-action-output.s3.amazonaws.com/de5ecd2f9296b9a89da4f785-soumikdatta09-TestProject-2-0?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20170118T110058Z&X-Amz-SignedHeaders=host&X-Amz-Expires=431999&X-Amz-Credential=AKIAIQ65EYQDTMSJK2DQ%2F20170118%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=f7de6f2960bcbb8db3c0b7ad4cee33ce4e1807233229cc6f86edf6b78a59dcbe",
+            "start_time": "2017-01-18T11:00:41.067Z",
+            "exit_code": null,
+            "canceled": null,
+            "step": 2,
+            "run_time_millis": 4053,
+            "has_output": true
+          }
+        ]
+      },
+      {
+        "name": "Restore source cache",
+        "actions": [
+          {
+            "truncated": false,
+            "index": 0,
+            "parallel": false,
+            "failed": null,
+            "infrastructure_fail": null,
+            "name": "Restore source cache",
+            "bash_command": null,
+            "status": "success",
+            "timedout": null,
+            "continue": null,
+            "end_time": "2017-01-18T11:00:45.239Z",
+            "source": "cache",
+            "type": "checkout",
+            "start_time": "2017-01-18T11:00:45.132Z",
+            "exit_code": null,
+            "canceled": null,
+            "step": 3,
+            "run_time_millis": 107,
+            "has_output": false
+          }
+        ]
+      },
+      {
+        "name": "Checkout using deploy key: 13:e1:31:cf:8a:69:bd:f9:b2:17:24:a5:69:52:e6:d4",
+        "actions": [
+          {
+            "truncated": false,
+            "index": 0,
+            "parallel": true,
+            "failed": null,
+            "infrastructure_fail": null,
+            "name": "Checkout using deploy key: 13:e1:31:cf:8a:69:bd:f9:b2:17:24:a5:69:52:e6:d4",
+            "bash_command": null,
+            "status": "success",
+            "timedout": null,
+            "continue": null,
+            "end_time": "2017-01-18T11:00:51.729Z",
+            "source": "config",
+            "type": "checkout",
+            "output_url": "https://circle-production-action-output.s3.amazonaws.com/0f5ecd2f9296b9a8dda4f785-soumikdatta09-TestProject-4-0?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20170118T110058Z&X-Amz-SignedHeaders=host&X-Amz-Expires=431999&X-Amz-Credential=AKIAIQ65EYQDTMSJK2DQ%2F20170118%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=128bca1939dd6315bc796f635eb249cba720247c46ebbf05ed71dd11eddab1c4",
+            "start_time": "2017-01-18T11:00:45.247Z",
+            "exit_code": 0,
+            "canceled": null,
+            "step": 4,
+            "run_time_millis": 6482,
+            "has_output": true
+          }
+        ]
+      },
+      {
+        "name": "Configure the build",
+        "actions": [
+          {
+            "truncated": false,
+            "index": 0,
+            "parallel": false,
+            "failed": null,
+            "infrastructure_fail": null,
+            "name": "Configure the build",
+            "bash_command": null,
+            "status": "success",
+            "timedout": null,
+            "continue": null,
+            "end_time": "2017-01-18T11:00:58.347Z",
+            "source": "cache",
+            "type": "machine",
+            "start_time": "2017-01-18T11:00:51.741Z",
+            "exit_code": null,
+            "canceled": null,
+            "step": 5,
+            "run_time_millis": 6606,
+            "has_output": false
+          }
+        ]
+      },
+      {
+        "name": "Disable SSH",
+        "actions": [
+          {
+            "truncated": false,
+            "index": 0,
+            "parallel": true,
+            "failed": null,
+            "infrastructure_fail": null,
+            "name": "Disable SSH",
+            "bash_command": null,
+            "status": "success",
+            "timedout": null,
+            "continue": null,
+            "end_time": "2017-01-18T11:00:58.359Z",
+            "type": "teardown",
+            "start_time": "2017-01-18T11:00:58.356Z",
+            "exit_code": null,
+            "canceled": null,
+            "step": 7,
+            "run_time_millis": 3,
+            "has_output": false
+          }
+        ]
+      }
+    ],
+    "body": "",
+    "usage_queued_at": "2017-01-18T10:58:37.272Z",
+    "fail_reason": null,
+    "retry_of": null,
+    "reponame": "TestProject",
+    "ssh_users": [],
+    "build_url": "https://circleci.com/gh/soumikdatta09/TestProject/9",
+    "parallel": 1,
+    "failed": null,
+    "branch": "master",
+    "username": "soumikdatta09",
+    "author_date": "2017-01-18T16:30:17+05:30",
+    "why": "github",
+    "user": {
+      "is_user": true,
+      "login": "soumikdatta09",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25054807?v=3",
+      "name": null,
+      "vcs_type": "github",
+      "id": 25054807
+    },
+    "vcs_revision": "e0b0ccfd95051be3dd853a8fd7ac9bccbc019806",
+    "owners": [
+      "soumikdatta09"
+    ],
+    "vcs_tag": null,
+    "pull_requests": [],
+    "build_num": 9,
+    "infrastructure_fail": false,
+    "committer_email": "noreply@github.com",
+    "previous": {
+      "build_num": 4,
+      "status": "no_tests",
+      "build_time_millis": 45542
+    },
+    "status": "no_tests",
+    "committer_name": "GitHub",
+    "retries": null,
+    "subject": "Create circle.yml",
+    "vcs_type": "github",
+    "timedout": false,
+    "dont_build": null,
+    "lifecycle": "finished",
+    "no_dependency_cache": false,
+    "stop_time": "2017-01-18T11:00:58.808Z",
+    "ssh_disabled": false,
+    "build_time_millis": 40678,
+    "circle_yml": {
+      "string": "notify:\n  webhooks:\n    # push\n    - url: https://procuat.cognizant.com/CCIAPI/api/values\n"
+    },
+    "messages": [],
+    "is_first_green_build": false,
+    "job_name": null,
+    "start_time": "2017-01-18T11:00:18.13Z",
+    "canceler": null,
+    "all_commit_details": [
+      {
+        "committer_date": "2017-01-18T16:30:17+05:30",
+        "body": "",
+        "branch": "master",
+        "author_date": "2017-01-18T16:30:17+05:30",
+        "committer_email": "noreply@github.com",
+        "commit": "e0b0ccfd95051be3dd853a8fd7ac9bccbc019806",
+        "committer_login": "web-flow",
+        "committer_name": "GitHub",
+        "subject": "Create circle.yml",
+        "commit_url": "https://github.com/soumikdatta09/TestProject/commit/e0b0ccfd95051be3dd853a8fd7ac9bccbc019806",
+        "author_login": "soumikdatta09",
+        "author_name": "soumikdatta09",
+        "author_email": "soumik.datta2@cognizant.com"
+      }
+    ],
+    "outcome": "no_tests",
+    "vcs_url": "https://github.com/soumikdatta09/TestProject",
+    "author_name": "soumikdatta09",
+    "node": [
+      {
+        "public_ip_addr": "54.237.91.118",
+        "port": 64611,
+        "username": "ubuntu",
+        "image_id": "https://s3.amazonaws.com/circle-downloads/build-image-ubuntu-14.04-XXL-927-41cd8fe.tar.gz",
+        "ssh_enabled": null
+      }
+    ],
+    "queued_at": "2017-01-18T11:00:18.085Z",
+    "canceled": false,
+    "author_email": "soumik.datta2@cognizant.com"
+  }
+}
