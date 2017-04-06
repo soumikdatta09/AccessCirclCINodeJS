@@ -24,6 +24,19 @@ module.exports = {
         };
 
         var req = https.request(options, function (res) {
+            const statusCode = res.statusCode;
+            let error;
+            if (statusCode !== 200) {
+                error = new Error(`Request Failed.\n` +
+                    `Status Code: ${statusCode}`);
+            }
+            if (error) {
+                console.log(error.message);
+                // consume response data to free up memory
+                res.resume();
+                return;
+            }
+
             res.setEncoding('utf8');
             res.on('data', function (jwtData) {
                 //console.log("body: " + chunk);

@@ -44,7 +44,7 @@ app.post('/ParseWebHookData', function (req, res) {
     console.log("reponame:", circleCIResponse.payload.reponame);
     console.log("build_num:", circleCIResponse.payload.build_num);
     console.log(repo_id);
-    console.log(circle_ci_token);
+    console.log("circle_ci_token:" + circle_ci_token);
     //console.log(circleCIResponse);
     // var date = new Date();
 
@@ -68,18 +68,18 @@ app.post('/ParseWebHookData', function (req, res) {
 
             //tokenDetails.getTokenDetails(tokenUrl, tokenPath, headerContentName, userName, repoName, JWT, function (tokenResponse) {
             //token = "1e571341d9d12ba236cbf8065e78081d2750992b"; //Change the hard coding.....................................................
-            console.log('Token: ' + circle_ci_token);
+            console.log('circle_ci_token: ' + circle_ci_token);
             //});
         }
 
         if (circle_ci_token) {
             console.log('about to call getApiData');
             getApiData(vcs_type, userName, repoName, build_num, circle_ci_token, function (response) {
-                console.log(response);
+                //console.log(response);
 
                 if (response) {
                     getTestResultCount(response, function (callback) {
-                        console.log('jsonToPush here: ' + callback);
+                        console.log('jsonToPush: ' + callback);
 
                         var jsonToPush = callback;
                         if (jsonToPush) {
@@ -99,13 +99,13 @@ app.post('/ParseWebHookData', function (req, res) {
 
 // Get API Data
 function getApiData(vcs_type, userName, repoName, buildNumber, token, callback) {
-    var url = appSettings.CircleCISettings.ApiUrl + vcs_type + "/" + userName + "/" + repoName + "/" +
+    var url = appSettings.CircleCISettings.ApiUrl + '/' + appSettings.CircleCISettings.path + '/' + vcs_type + "/" + userName + "/" + repoName + "/" +
         buildNumber + "/" + appSettings.CircleCISettings.TestProject + token;
     console.log('GetApiData URL: ' + url);
     var https = require('https');
 
     var options = {
-        hostname: 'circleci.com',
+        hostname: appSettings.CircleCISettings.ApiUrl,
         port: 443,
         path: '/' + appSettings.CircleCISettings.path + '/' + vcs_type + "/" + userName + "/" + repoName + "/" +
         buildNumber + "/" + appSettings.CircleCISettings.TestProject + token,
@@ -115,8 +115,6 @@ function getApiData(vcs_type, userName, repoName, buildNumber, token, callback) 
             'Accept': 'application/json'
         }
     };
-
-    console.log('Options: ' + options);
 
     https.get(options, (res) => {
         const statusCode = res.statusCode;
@@ -160,23 +158,23 @@ function getApiData(vcs_type, userName, repoName, buildNumber, token, callback) 
 // Get Test Results Count
 function getTestResultCount(result, callback) {
     console.log('getTestResultCount called........');
-    // var tests = result.tests;
-    // console.log(tests.length);
-    var tests = [{
-        "classname": "Actions auth actions should create an action for requesting login",
-        "file": 1,
-        "result": "success"
-    },
-    {
-        "classname": "Actions auth actions should create an action for requesting login",
-        "file": 2,
-        "result": "success"
-    },
-    {
-        "classname": "Actions auth actions should create an action for a failed login",
-        "file": 3,
-        "result": "failure"
-    }];
+    var tests = result.tests;
+    console.log("No. of Tests: " + tests.length);
+    // var tests = [{
+    //     "classname": "Actions auth actions should create an action for requesting login",
+    //     "file": 1,
+    //     "result": "success"
+    // },
+    // {
+    //     "classname": "Actions auth actions should create an action for requesting login",
+    //     "file": 2,
+    //     "result": "success"
+    // },
+    // {
+    //     "classname": "Actions auth actions should create an action for a failed login",
+    //     "file": 3,
+    //     "result": "failure"
+    // }];
 
     for (i = 0; i < tests.length; i++) {
         if (tests[i]["result"] == "success") {
@@ -188,22 +186,24 @@ function getTestResultCount(result, callback) {
     }
     totalCount = tests.length;
     console.log('totalCount: ' + totalCount + ', ' + 'successCount: ' + successCount);
-    successRate = (successCount / totalCount) * 100;
-    if (totalCount != 0 && successCount != 0) {
-        var CircleCISnapShotName = appSettings.CircleCISnapshotSettings.CircleCISnapShotName;
-        var total_test_count = appSettings.CircleCISnapshotSettings.total_test_count;
-        var test_success_rate = appSettings.CircleCISnapshotSettings.test_success_rate;
 
-        var jsonToPush = `{
+    if (totalCount != 0 && successCount != 0)
+        successRate = (successCount / totalCount) * 100;
+
+    var CircleCISnapShotName = appSettings.CircleCISnapshotSettings.CircleCISnapShotName;
+    var total_test_count = appSettings.CircleCISnapshotSettings.total_test_count;
+    var test_success_rate = appSettings.CircleCISnapshotSettings.test_success_rate;
+
+    var jsonToPush = `{
                     ${CircleCISnapShotName}: {
                             ${total_test_count} : ${totalCount},
                             ${test_success_rate} : ${Math.round(successRate * 100) / 100}
                         }
                     }`;
 
-        //console.log(jsonToPush);
-        callback(jsonToPush);
-    }
+    //console.log(jsonToPush);
+    callback(jsonToPush);
+
 
 }
 // Get Test Results Count
@@ -223,7 +223,7 @@ function pushSnapshotData(result, callback) {
         // email: email,
         // password: pwd
     });
-    console.log(JWT);
+    console.log("JWT: " + JWT);
     var options = {
         host: url,
         port: 443,
@@ -236,16 +236,16 @@ function pushSnapshotData(result, callback) {
     };
 
     var req = https.request(options, function (res) {
-        res.setEncoding('utf8');        
+        res.setEncoding('utf8');
         res.on('data', function (pushResponseData) {
             //console.log("Response body after Push: " + chunk);
-            
+
         });
         res.on('end', () => {
             try {
                 //console.log('Response ended');                
                 callback("Response ended without error");
-                
+
             } catch (e) {
                 console.log(e.message);
             }
@@ -254,6 +254,7 @@ function pushSnapshotData(result, callback) {
 
     req.on('error', (e) => {
         console.error(e);
+        callback(e);
     });
 
     req.write(data);
@@ -261,12 +262,15 @@ function pushSnapshotData(result, callback) {
 }
 
 //Push Snapshot Data to Rails
+app.set('port', (process.env.PORT || 8082));
+var server = app.listen(app.get('port'), function () {
+    try {
+        var host = server.address().address
+        var port = server.address().port
 
-var server = app.listen(8082, "127.0.0.1", function () {
-
-    var host = server.address().address
-    var port = server.address().port
-
-    console.log("Example app listening at http://%s:%s", host, port)
-
+        console.log("Example app listening at http://%s:%s", host, port)
+    }
+    catch (e) {
+        console.log(e.message);
+    }
 })
